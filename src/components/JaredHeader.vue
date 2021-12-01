@@ -1,7 +1,7 @@
 <template>
   <div class="Header">
     <div class="Logo">
-      <h4>Jared Sauve</h4>
+      <p>Jared Sauve</p>
     </div>
     <div class="Nav">
       <p>nav</p>
@@ -24,7 +24,8 @@ export default class Header extends Vue {}
     display: flex;
   }
   .Logo{
-    font-size: 38px;
+    font-size: 96px;
+    font-weight: 100;
     width: 85%;
     background: red;
     padding: 10px;

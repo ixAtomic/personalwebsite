@@ -22,16 +22,17 @@ export default class App extends Vue {}
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import './css/main.css';
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+
 
 #app {
   /* font-family: Avenir, Helvetica, Arial, sans-serif; */
-  font-family: 'Caveat', cursive;
+  font-family: 'Heebo', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
-  color: #2c3e50;
+  color: black;
   /* margin-top: 60px; */
 }
 </style>
