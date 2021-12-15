@@ -24,14 +24,17 @@ export default class HelloWorld extends Vue {
 <style lang="scss" scoped>
   .home-page{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    margin-right: 100px;
     align-items: center;
     height: 100%;
 
     .middle-justify{
-      width: 1000px;
-      height: 600px;
+      width: 1400px;
+      height: 800px;
       display: flex;
+      justify-content: space-evenly;
+      align-items: center;
       // flex: 1 0 auto;
       
       .link-content{
@@ -40,10 +43,16 @@ export default class HelloWorld extends Vue {
         align-self: center;
       }
       .main-image{
+        border: solid 2px black;
+        overflow: hidden;
         border-radius: 50%;
-        // background-image: url("../../photos/IMG_4161.jpg");
-        height: 600px;
-        width: 600px;
+        height: 700px;
+        width: 700px;
+        img{
+          object-position: 0px -200px;
+          height: auto;
+          width: 750px;
+        }
       }
     }
   }
