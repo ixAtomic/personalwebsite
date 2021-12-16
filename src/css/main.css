@@ -17,6 +17,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: black; }
 
+h1 {
+  font-family: Heebo;
+  font-style: normal;
+  font-weight: 100;
+  font-size: 96px;
+  line-height: 141px;
+  display: flex;
+  align-items: center;
+  color: #000000; }
+
 h2 {
   font-family: Heebo;
   font-size: 48px;
@@ -32,3 +42,7 @@ p {
   font-weight: normal;
   font-size: 24px;
   line-height: 166%; }
+
+a {
+  color: black;
+  font-size: 24px; }

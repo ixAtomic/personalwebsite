@@ -3,6 +3,12 @@
     <div class="middle-justify">
       <div class="link-content">
         <h2>Jared Sauve</h2>
+        <p>Web Developer</p>
+        <div class="main-nav">
+          <router-link to="/about">About Me</router-link>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </div>
       </div>
       <div class="main-image">
         <img src="../../photos/IMG_4161.jpg" />
@@ -15,7 +21,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class HelloWorld extends Vue {
+export default class MainPage extends Vue {
   @Prop() private msg!: string;
 }
 </script>
@@ -35,23 +41,28 @@ export default class HelloWorld extends Vue {
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      // flex: 1 0 auto;
       
       .link-content{
-        background-color: blue;
-        height: 400px;
+        height: 500px;
+        width: 400px;
         align-self: center;
+        .main-nav{
+          margin-top: 50px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
       }
       .main-image{
         border: solid 2px black;
         overflow: hidden;
         border-radius: 50%;
-        height: 700px;
-        width: 700px;
+        height: 850px;
+        width: 850px;
         img{
           object-position: 0px -200px;
           height: auto;
-          width: 750px;
+          width: 850px;
         }
       }
     }
