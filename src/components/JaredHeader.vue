@@ -1,10 +1,10 @@
 <template>
   <div class="header">
-    <h1>Jared Sauve</h1>
+    <h1 class="logo"><router-link to="/">Jared Sauve</router-link></h1>
     <div class="nav">
       <router-link to="/about">About Me</router-link>
-      <a href="#">Blog</a>
-      <a href="#">Contact</a>
+      <router-link to="/blog">Blog</router-link>
+      <router-link to="/contact">Contact</router-link>
     </div>
   </div>
 </template>
@@ -21,6 +21,10 @@ export default class Header extends Vue {}
 
 <style lang="scss">
   .header{
+    .logo a{
+      text-decoration: none;
+      font-size: 96px;
+    }
     display: flex;
     justify-content: space-between;
     align-items: flex-end;

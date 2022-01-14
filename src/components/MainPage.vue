@@ -6,8 +6,8 @@
         <p>Web Developer</p>
         <div class="main-nav">
           <router-link to="/about">About Me</router-link>
-          <a href="#">Blog</a>
-          <a href="#">Contact</a>
+          <router-link to="/Blog">Blog</router-link>
+          <router-link to="/contact">Contact</router-link>
         </div>
       </div>
       <div class="main-image">

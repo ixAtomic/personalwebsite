@@ -1,6 +1,7 @@
 <template>
   <div class="gutters">
       <jared-header></jared-header>
+      <div>  </div>
   </div>
 </template>
 
@@ -17,6 +18,28 @@ import JaredHeader from './JaredHeader.vue';
 })
 export default class About extends Vue {
   @Prop() private msg!: string;
+  blogposts = [];
+
+  async mounted() {
+    try{
+      const response = await fetch('/api/blog-posts?populate=*', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log(await response.json());
+    }
+    catch(e){
+      console.log("Error")
+    }
+  }
+
+
+  getString(): string{
+    return "Hello world"
+  }
+
 }
 </script>
 
