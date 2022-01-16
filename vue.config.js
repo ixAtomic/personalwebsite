@@ -9,6 +9,11 @@ module.exports = {
           secure: false,
           changeOrigin: true
         },
+        '^/uploads/*': {
+          target: 'http://localhost:8090',
+          secure: false,
+          changeOrigin: true
+        }
       }
     }
   }

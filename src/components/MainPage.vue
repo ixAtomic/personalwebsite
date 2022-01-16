@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="main-image">
-        <img src="../../photos/IMG_4161.jpg" />
+        <img :src="landingImage" />
       </div>
     </div>
   </div>
@@ -23,6 +23,23 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class MainPage extends Vue {
   @Prop() private msg!: string;
+  landingImage = "";
+
+  async mounted() {
+    try{
+      let response = await fetch('/api/landing?populate=*', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      let entireResponse = await response.json();
+      this.landingImage = await entireResponse.data.attributes.LandingImage.data.attributes.url
+    }
+    catch(e){
+      console.log("error")
+    }
+  }
 }
 </script>
 

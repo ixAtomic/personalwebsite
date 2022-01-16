@@ -28,9 +28,10 @@ export default class Header extends Vue {}
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding-top: 50px;
+    //padding-top: 40px;
     padding-bottom: 25px;
     border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 100px;
     .nav{
       margin-bottom: 27px;
       margin-right: 100px;

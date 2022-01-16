@@ -9,14 +9,19 @@
     "scss": "node-sass --watch src/scss/main.scss src/css/main.css"
   },
   "dependencies": {
-    "@fortawesome/vue-fontawesome": "^2.0.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^2.0.6",
     "core-js": "^3.6.5",
+    "marked": "^4.0.10",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.5.3"
   },
   "devDependencies": {
+    "@types/marked": "^4.0.1",
     "@types/webpack-env": "^1.16.3",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
