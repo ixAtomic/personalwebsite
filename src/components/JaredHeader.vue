@@ -28,7 +28,7 @@ export default class Header extends Vue {}
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    //padding-top: 40px;
+    margin-top: 20px;
     padding-bottom: 25px;
     border-bottom: 3px solid rgba(0, 0, 0, 0.2);
     margin-bottom: 100px;
