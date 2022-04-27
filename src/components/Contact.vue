@@ -5,8 +5,11 @@
         <h2>Contact</h2>
         <div class="contact-content" v-html="contactContent">
         </div>
-        <div v-if="getLinks()" class="links">
-          {{ getLinks() }}
+        <div>
+          {{ email }}
+        </div>
+        <div v-for="link in contactLinks" :key="link" class="links">
+          {{ link }}
         </div>
       </div>
   </div>
@@ -26,13 +29,12 @@ import { marked } from 'marked';
 })
 export default class Contact extends Vue {
   @Prop() private msg!: string;
-  data = []
   contactContent = ""
-  contactLinks = []
+  contactLinks: Array<string>=[];
   email = ""
 
   async mounted(){
-       try{
+    try{
       //use this if I need to get Images as well as content - '/api/blog-posts?populate=*'
       let response = await fetch('/api/contact?populate=*', {
         method: 'GET',
@@ -42,8 +44,16 @@ export default class Contact extends Vue {
       });
       let entireResponse = await response.json();
       this.contactContent = marked.parse(await entireResponse.data.attributes.ContactContent);
-      this.email = await entireResponse.data.attributes.Email
-      this.data = await entireResponse.data
+      //this.email = await entireResponse.data.attributes.Email
+      let myLinks = await entireResponse.data.attributes.links.data
+      for(let links of myLinks){
+        if(links.attributes.Link.includes('@')){
+          this.email = await links.attributes.Link
+        }
+        else{
+          this.contactLinks.push(links.attributes.Link)
+        }
+      }
       //debugger
     }
     catch(e){
@@ -51,9 +61,11 @@ export default class Contact extends Vue {
     }
   }
 
-  async getLinks(){
-    return await this.data.filter(link => link === "FacebookLink")
-  }
+  // async getLinks(){
+      
+  // }
+
+
 
 }
 </script>
