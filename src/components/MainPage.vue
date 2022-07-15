@@ -68,6 +68,9 @@ export default class MainPage extends Vue {
           display: flex;
           flex-direction: column;
           gap: 10px;
+          a{
+            width: fit-content;
+          }
         }
       }
       .main-image{

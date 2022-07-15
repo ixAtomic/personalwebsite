@@ -1,0 +1,3 @@
+NOTES:
+
+Blog Post Images should be 400 x 300 = width x height

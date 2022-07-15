@@ -1,0 +1,138 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "attributes": {
+                "SummaryContent": "aaaaa",
+                "SummaryImage": {
+                    "data": {
+                        "id": 1,
+                        "attributes": {
+                            "name": "IMG_4161.jpg",
+                            "alternativeText": "IMG_4161.jpg",
+                            "caption": "IMG_4161.jpg",
+                            "width": 3024,
+                            "height": 4032,
+                            "formats": {
+                                "thumbnail": {
+                                    "name": "thumbnail_IMG_4161.jpg",
+                                    "hash": "thumbnail_IMG_4161_6c510f9794",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "width": 117,
+                                    "height": 156,
+                                    "size": 3.25,
+                                    "path": null,
+                                    "url": "/uploads/thumbnail_IMG_4161_6c510f9794.jpg"
+                                },
+                                "large": {
+                                    "name": "large_IMG_4161.jpg",
+                                    "hash": "large_IMG_4161_6c510f9794",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "width": 750,
+                                    "height": 1000,
+                                    "size": 49.1,
+                                    "path": null,
+                                    "url": "/uploads/large_IMG_4161_6c510f9794.jpg"
+                                },
+                                "medium": {
+                                    "name": "medium_IMG_4161.jpg",
+                                    "hash": "medium_IMG_4161_6c510f9794",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "width": 563,
+                                    "height": 750,
+                                    "size": 31.55,
+                                    "path": null,
+                                    "url": "/uploads/medium_IMG_4161_6c510f9794.jpg"
+                                },
+                                "small": {
+                                    "name": "small_IMG_4161.jpg",
+                                    "hash": "small_IMG_4161_6c510f9794",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "width": 375,
+                                    "height": 500,
+                                    "size": 16.52,
+                                    "path": null,
+                                    "url": "/uploads/small_IMG_4161_6c510f9794.jpg"
+                                }
+                            },
+                            "hash": "IMG_4161_6c510f9794",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 632.38,
+                            "url": "/uploads/IMG_4161_6c510f9794.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2022-01-12T23:19:04.699Z",
+                            "updatedAt": "2022-01-16T02:45:44.727Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 2,
+            "attributes": {
+                "SummaryContent": "aaaaaa",
+                "SummaryImage": {
+                    "data": {
+                        "id": 2,
+                        "attributes": {
+                            "name": "PotofGreed-TF04-JP-VG.jpg",
+                            "alternativeText": "PotofGreed-TF04-JP-VG.jpg",
+                            "caption": "PotofGreed-TF04-JP-VG.jpg",
+                            "width": 544,
+                            "height": 544,
+                            "formats": {
+                                "thumbnail": {
+                                    "name": "thumbnail_PotofGreed-TF04-JP-VG.jpg",
+                                    "hash": "thumbnail_Potof_Greed_TF_04_JP_VG_46c570b494",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "width": 156,
+                                    "height": 156,
+                                    "size": 7.94,
+                                    "path": null,
+                                    "url": "/uploads/thumbnail_Potof_Greed_TF_04_JP_VG_46c570b494.jpg"
+                                },
+                                "small": {
+                                    "name": "small_PotofGreed-TF04-JP-VG.jpg",
+                                    "hash": "small_Potof_Greed_TF_04_JP_VG_46c570b494",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "width": 500,
+                                    "height": 500,
+                                    "size": 45.36,
+                                    "path": null,
+                                    "url": "/uploads/small_Potof_Greed_TF_04_JP_VG_46c570b494.jpg"
+                                }
+                            },
+                            "hash": "Potof_Greed_TF_04_JP_VG_46c570b494",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 48.36,
+                            "url": "/uploads/Potof_Greed_TF_04_JP_VG_46c570b494.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2022-01-13T00:07:26.169Z",
+                            "updatedAt": "2022-01-13T00:07:26.169Z"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "page": 1,
+            "pageSize": 25,
+            "pageCount": 1,
+            "total": 2
+        }
+    }
+}
