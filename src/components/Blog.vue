@@ -1,16 +1,18 @@
 <template>
   <div class="gutters">
       <jared-header></jared-header>
-      <div class="blog-main">
+      <div>
         <h2>Blog</h2>
         <div class="cards">
           <div class="box" v-for="card in cards" :key="card.id">
-            <div class="image-box">
-              <router-link :to="{ path: '/blogpost', query: { BlogID: card.id } }">
+            <router-link :to="{ path: '/blogpost', query: { BlogID: card.id } }">
+              <div class="image-box">
                 <img :src="card.attributes.SummaryImage.data.attributes.url" alt="aa"/>
-              </router-link>
+              </div>
+            </router-link>
+            <div class="display">
+              <p class="card-title">{{ card.attributes.SummaryTitle }}</p>
             </div>
-            <p>{{ card.attributes.SummaryContent }}</p>
           </div>
         </div>
       </div>
@@ -41,7 +43,7 @@ export default class Blog extends Vue {
       const SummaryData = qs.stringify(
         {
           populate: 'SummaryImage',
-          fields: ['SummaryContent']
+          fields: [ 'SummaryTitle']
         }, 
         {
           encodeValuesOnly: true,
@@ -68,17 +70,44 @@ export default class Blog extends Vue {
         margin: 0px 150px;
         .box{
           display: flex;
-          justify-content: center;
+          justify-content: flex-end;
           flex-direction: column;
           align-items: center;
           flex: 1;
+          position: relative;
+          :hover + .display{
+            visibility: visible;
+            transition: visibility 0s, opacity 400ms linear;
+            opacity: 1;
+          }
           .image-box{
             height: 300px;
             overflow: hidden;
             img{
+              transition: transform 5s ease;
               height: auto;
-              width: 400px;
+              width: 450px;
             }
+            :hover{
+              transform: scale(1.2);
+            }
+          }
+          .display{
+            position: absolute;
+            visibility: hidden;
+            background: rgba(0,0,0,.85);
+            opacity: 0;
+            color: white;
+            z-index: 1;
+            pointer-events: none;
+            width: 100%;
+            height: 115px;
+            //height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
           }
         }
     }
@@ -87,8 +116,8 @@ export default class Blog extends Vue {
       display: grid;
       grid-template-columns: max-content max-content max-content;
       grid-template-rows: 1fr 1fr 1fr;
-      column-gap: 150px;
-      row-gap: 30px;
+      column-gap: 75px;
+      row-gap: 75px;
     }
 
 </style>
