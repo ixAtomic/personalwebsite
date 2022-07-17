@@ -2,14 +2,14 @@
   <div class="gutters">
     <jared-header></jared-header>
     <h2>{{ content.SummaryTitle }}</h2>
-    <div class="post-data" v-for="post in Posts" :key="post.id">
+    <div class="post-data" v-for="(post,index) in Posts" :key="post.id">
       <div class="post-image">
         <img :src="post.BlogContent.attributes.BlogImage.data.attributes.url" alt="aa"/>
       </div>
       <div :class="{ 'class-order': post.ImagePosition }" class="post-content" v-html="post.BlogContentHTML">
-
+        <!-- using `marked` to get HTML -->
       </div>
-      <div class="border-bottom"/>
+      <div v-if="index !=  Posts.length - 1" class="border-bottom"/> <!-- not putting border on last element or only element if there is just one -->
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ interface PostsInt {
 
 export default class BlogPost extends Vue{
     @Prop() private BlogID!: string
-    content = [ ]
+    content = []
     Posts: PostsInt[] = []
 
     async mounted() {
@@ -68,12 +68,13 @@ export default class BlogPost extends Vue{
 <style lang="scss">
     .gutters{
       margin: 0px 150px;
+      padding-bottom: 100px;
       .post-data{
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         gap: 50px;
-        margin-bottom: 75px;
+        margin-bottom: 100px;
       }
       .post-image{
         overflow: hidden;
@@ -86,9 +87,9 @@ export default class BlogPost extends Vue{
         flex: 1 1 50%;
       }
       .border-bottom{
-        padding-bottom: 50px;
+        padding-bottom: 75px;
         border-bottom: 3px solid rgba(0, 0, 0, 0.2);
-        width: 200px;
+        width: 600px;
       }
       .class-order{
         order: -1;
