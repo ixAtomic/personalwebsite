@@ -53,8 +53,8 @@ export default class MainPage extends Vue {
     height: 100%;
 
     .middle-justify{
-      width: 1400px;
-      height: 800px;
+      // width: 1400px;
+      // height: 800px;
       display: flex;
       justify-content: space-evenly;
       align-items: center;
@@ -83,6 +83,18 @@ export default class MainPage extends Vue {
           object-position: 0px -200px;
           height: auto;
           width: 850px;
+        }
+      }
+    }
+
+    @media (max-height: 800px) {
+      .middle-justify{
+        .link-content{
+          width: 350px;
+        }
+        .main-image{
+          height: 710px;
+          width: 710px;
         }
       }
     }
