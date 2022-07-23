@@ -3,8 +3,11 @@ module.exports = {
       ? '/'
       : 'http://localhost:8080',
     publicPath: process.env.NODE_ENV === 'development2'
-      ? '/'
-      : 'https://b9715dca.personalwebsite-3y4.pages.dev',
+      ? '/dist/'
+      : '/',
+    // publicPath: process.env.NODE_ENV === 'development3'
+    // ? ''
+    // : '/',
     devServer: {
       proxy: {
         '^/api/*': {
