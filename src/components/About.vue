@@ -26,11 +26,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import JaredHeader from './JaredHeader.vue';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faFile} from "@fortawesome/free-regular-svg-icons";
 import { marked } from 'marked';
 
-library.add(faFile)
 
 @Component({
   components: {

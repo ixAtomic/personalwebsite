@@ -8,12 +8,14 @@
 import { Component, Vue } from 'vue-property-decorator';
 import MainPage from './components/MainPage.vue';
 import JaredHeader from './components/JaredHeader.vue';
+import Hamburger from './components/Hamburger.vue';
 
 
 @Component({
   components: {
     MainPage,
     JaredHeader,
+    Hamburger
   },
 })
 export default class App extends Vue {}
