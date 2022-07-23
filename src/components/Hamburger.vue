@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div v-if="childMenu" class="menu" @click="updateMenu(childMenu)">
+    <div :class="{ 'display': childMenu }" class="menu" @click="updateMenu(childMenu)">
       <font-awesome-icon :icon="['fas', 'bars']"/>
     </div>
-    <!-- <div class="links" @click="UpdateHamburger(msg)">
+    <div :class="{ 'display': !childMenu }" class="menu" @click="updateMenu(childMenu)">
       <font-awesome-icon :icon="['fas', 'minus-circle']"/>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -19,7 +19,6 @@ export default class Hamburger extends Vue{
 
   @Emit("UpdateIsMenu")
   updateMenu(isMenu: boolean){
-    debugger
     this.childMenu = !isMenu
     return !isMenu;
   }
@@ -27,23 +26,17 @@ export default class Hamburger extends Vue{
 </script>
 
 <style>
+    .menu{
+      display: none;
+    }
     @media (min-width: 320px) and (max-width: 767px) {
       .menu{
-        position: absolute;
         cursor: pointer;
-        top: 6%;
-        right: 8%;
         font-size: 48px;
-      }
-      .links{
-        position: absolute;
-        cursor: pointer;
-        top: 6%;
-        right: 8%;
-        font-size: 48px;
+        display: none;
       }
       .display{
-        display: none;
+        display: block;
       }
     }
 </style>

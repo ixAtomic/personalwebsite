@@ -1,10 +1,10 @@
 <template>
   <div class="home-page">
-    <hamburger @UpdateIsMenu="UpdateIsMenu($event)"></hamburger>
-    <div v-if="isMenu" class="middle-justify">
-      <div class="link-content">
+    <div class="middle-justify">
+      <hamburger @UpdateIsMenu="UpdateIsMenu($event)"></hamburger>
+      <div v-if="isMenu" class="link-content">
         <h2>Jared Sauve</h2>
-        <p>Web Developer</p>
+        <p class="text-pink-400">Web Developer</p>
         <div class="main-nav">
           <router-link to="/about">About Me</router-link>
           <router-link to="/Blog">Blog</router-link>
@@ -24,13 +24,13 @@ import Hamburger from "./Hamburger.vue";
 
 @Component({
   components: {
-    Hamburger
+    Hamburger,
   },
 })
 export default class MainPage extends Vue {
   @Prop() private msg!: string;
   landingImage = "";
-  isMenu = true
+  isMenu = true;
 
   async mounted() {
     try {
@@ -48,9 +48,8 @@ export default class MainPage extends Vue {
     }
   }
 
-  UpdateIsMenu(isMenu: boolean){
-    debugger
-    this.isMenu = isMenu
+  UpdateIsMenu(isMenu: boolean) {
+    this.isMenu = isMenu;
   }
 }
 </script>
@@ -60,20 +59,10 @@ export default class MainPage extends Vue {
 .home-page {
   display: flex;
   justify-content: center;
-  //margin: 0 10%;
+  flex-direction: column;
   align-items: center;
   height: 100%;
-  .menu{
-    display: none;
-    position: absolute;
-    cursor: pointer;
-    top: 6%;
-    right: 8%;
-    font-size: 48px;
-  }
   .middle-justify {
-    // width: 1400px;
-    // height: 800px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -105,11 +94,10 @@ export default class MainPage extends Vue {
       }
     }
   }
+}
 
-  @media (min-width: 1025px) and (max-width: 1200px) {
-    .home-page {
-      margin-right: 0px;
-    }
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .home-page {
     .middle-justify {
       .link-content {
         width: 250px;
@@ -123,11 +111,10 @@ export default class MainPage extends Vue {
       }
     }
   }
+}
 
-  @media (min-width: 768px) and (max-width: 1024px) {
-    .home-page {
-      margin-right: 0px;
-    }
+@media (min-width: 768px) and (max-width: 1024px) {
+  .home-page {
     .middle-justify {
       .link-content {
         width: 250px;
@@ -142,15 +129,10 @@ export default class MainPage extends Vue {
       }
     }
   }
+}
 
-    @media (min-width: 320px) and (max-width: 767px) {
-    .home-page {
-      margin-right: 0px;
-      align-items: center;
-    }
-    .menu{
-      display: block;
-    }
+@media (min-width: 320px) and (max-width: 767px) {
+  .home-page {
     .middle-justify {
       flex-direction: column;
       .link-content {
@@ -160,7 +142,7 @@ export default class MainPage extends Vue {
         flex-wrap: wrap;
         flex-direction: column;
         margin-bottom: 50px;
-        .main-nav{
+        .main-nav {
           display: none;
         }
       }
