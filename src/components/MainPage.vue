@@ -4,14 +4,14 @@
       <hamburger @UpdateIsMenu="UpdateIsMenu($event)"></hamburger>
       <div v-if="isMenu" class="link-content">
         <h2>Jared Sauve</h2>
-        <p class="text-pink-400">Web Developer</p>
+        <p>Web Developer</p>
         <div class="main-nav">
           <router-link to="/about">About Me</router-link>
           <router-link to="/Blog">Blog</router-link>
           <router-link to="/contact">Contact</router-link>
         </div>
       </div>
-      <div class="main-image">
+      <div v-if="isMenu" class="main-image">
         <img :src="landingImage" />
       </div>
     </div>
@@ -67,7 +67,6 @@ export default class MainPage extends Vue {
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-
     .link-content {
       height: 500px;
       width: 350px;
@@ -133,6 +132,7 @@ export default class MainPage extends Vue {
 
 @media (min-width: 320px) and (max-width: 767px) {
   .home-page {
+    justify-content: flex-start;
     .middle-justify {
       flex-direction: column;
       .link-content {
