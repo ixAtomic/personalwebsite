@@ -6,16 +6,16 @@ import vue from "@vitejs/plugin-vue";
 const path = require("path");
 // https://vitejs.dev/config/
 export default defineConfig({
-  publicDir: "http://localhost:8080",
+  publicDir: "https://personalwebsite-3y4.pages.dev",
   server: {
     proxy: {
       "^/api/*": {
-        target: "http://localhost:8090",
+        target: "https://jared-sauve.herokuapp.com",
         secure: false,
         changeOrigin: true,
       },
       "^/uploads/*": {
-        target: "http://localhost:8090",
+        target: "https://jared-sauve.herokuapp.com",
         secure: false,
         changeOrigin: true,
       },
