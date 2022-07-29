@@ -18,40 +18,32 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+<script setup lang="ts">
 import Hamburger from "./Hamburger.vue";
+import { ref, onMounted } from "vue";
 
-@Component({
-  components: {
-    Hamburger,
-  },
-})
-export default class MainPage extends Vue {
-  @Prop() private msg!: string;
-  landingImage = "";
-  isMenu = true;
+let landingImage = ref<string>();
+let isMenu = ref(true);
 
-  async mounted() {
-    try {
-      let response = await fetch("/api/landing?populate=*", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      let entireResponse = await response.json();
-      this.landingImage = await entireResponse.data.attributes.LandingImage.data
-        .attributes.url;
-    } catch (e) {
-      console.log("error");
-    }
-  }
-
-  UpdateIsMenu(isMenu: boolean) {
-    this.isMenu = isMenu;
-  }
+function UpdateIsMenu(isMenuUpdate: boolean) {
+  isMenu.value = isMenuUpdate;
 }
+
+onMounted(async () => {
+  try {
+    let response = await fetch("/api/landing?populate=*", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let entireResponse = await response.json();
+    landingImage.value = await entireResponse.data.attributes.LandingImage.data
+      .attributes.url;
+  } catch (e) {
+    console.log("error");
+  }
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

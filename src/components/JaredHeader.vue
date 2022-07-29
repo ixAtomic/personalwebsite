@@ -9,34 +9,26 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
-@Component({
-  components: {
-  },
-})
-export default class Header extends Vue {}
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
-  .header{
-    .logo a{
-      text-decoration: none;
-      font-size: 96px;
-    }
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 20px;
-    padding-bottom: 25px;
-    border-bottom: 3px solid rgba(0, 0, 0, 0.2);
-    margin-bottom: 100px;
-    .nav{
-      margin-bottom: 27px;
-      margin-right: 100px;
-      display: flex;
-      gap: 60px;
-    }
+.header {
+  .logo a {
+    text-decoration: none;
+    font-size: 96px;
   }
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 20px;
+  padding-bottom: 25px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 100px;
+  .nav {
+    margin-bottom: 27px;
+    margin-right: 100px;
+    display: flex;
+    gap: 60px;
+  }
+}
 </style>

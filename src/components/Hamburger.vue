@@ -1,50 +1,55 @@
 <template>
   <div class="nav-menu">
-    <div :class="{ 'display': childMenu }" class="menu" @click="updateMenu(childMenu)">
-      <font-awesome-icon :icon="['fas', 'bars']"/>
+    <div
+      :class="{ display: childMenu }"
+      class="menu"
+      @click="updateMenu(childMenu)"
+    >
+      <font-awesome-icon :icon="['fas', 'bars']" />
     </div>
-    <div :class="{ 'display': !childMenu }" class="menu" @click="updateMenu(childMenu)">
-      <font-awesome-icon :icon="['fas', 'minus-circle']"/>
+    <div
+      :class="{ display: !childMenu }"
+      class="menu"
+      @click="updateMenu(childMenu)"
+    >
+      <font-awesome-icon :icon="['fas', 'minus-circle']" />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { VModel, Vue, Component, Emit } from "vue-property-decorator";
-import { component } from "vue/types/umd";
+<script setup lang="ts">
+import { ref } from "vue";
 
-@Component
-export default class Hamburger extends Vue{
-  childMenu = true
+const emits = defineEmits(["UpdateIsMenu"]);
 
-  @Emit("UpdateIsMenu")
-  updateMenu(isMenu: boolean){
-    this.childMenu = !isMenu
-    return !isMenu;
-  }
+let childMenu = ref(true);
+
+function updateMenu(childMenuUpdate: Boolean) {
+  childMenu.value = !childMenuUpdate;
+  emits("UpdateIsMenu", childMenu.value);
 }
 </script>
 
 <style>
-    .menu{
-      display: none;
-    }
-    @media (min-width: 320px) and (max-width: 767px) {
-      .nav-menu{
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
-      }
-      .menu{
-        cursor: pointer;
-        font-size: 48px;
-        margin-right: 35px;
-        margin-top: 15px;
-        margin-bottom: 10px;
-        display: none;
-      }
-      .display{
-        display: block;
-      }
-    }
+.menu {
+  display: none;
+}
+@media (min-width: 320px) and (max-width: 767px) {
+  .nav-menu {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .menu {
+    cursor: pointer;
+    font-size: 48px;
+    margin-right: 35px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    display: none;
+  }
+  .display {
+    display: block;
+  }
+}
 </style>

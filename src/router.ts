@@ -1,14 +1,14 @@
-import Vue from "vue";
-import Router from "vue-router";
+
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from "vue-router";
 import MainPage from "./components/MainPage.vue";
 import About from "./components/About.vue";
 import Blog from "./components/Blog.vue";
 import Contact from "./components/Contact.vue";
 import BlogPost from "./components/BlogPost.vue";
 
-Vue.use(Router);
 
-export default new Router({
+const router = createRouter({
+    history: createWebHistory(),
     routes: [
         {
             path: "/",
@@ -38,6 +38,8 @@ export default new Router({
             name: "contact",
             component: Contact
         }
-    ]
+    ],
 })
+
+export default router
 
