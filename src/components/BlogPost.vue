@@ -46,7 +46,9 @@ onMounted(async () => {
     }
   );
   let response = await fetch(
-    `__SITE_BASE__/api/blog-posts/${props.BlogID}?${PostContent}`,
+    `${import.meta.env.VITE_STRAPI_URL}/api/blog-posts/${
+      props.BlogID
+    }?${PostContent}`,
     {
       method: "GET",
       headers: {

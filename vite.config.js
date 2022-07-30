@@ -9,14 +9,6 @@ export default defineConfig((command) => {
   if (command === "build") {
     return {
       plugins: [
-        replaceCodePlugin({
-          replacements: [
-            {
-              from: "__SITE_BASE__",
-              to: "https://strapi.jaredsauve.com",
-            },
-          ],
-        }),
         vue({
           template: {
             compilerOptions: {
@@ -52,14 +44,6 @@ export default defineConfig((command) => {
         port: 8080,
       },
       plugins: [
-        replaceCodePlugin({
-          replacements: [
-            {
-              from: "__SITE_BASE__",
-              to: "http://localhost:8080",
-            },
-          ],
-        }),
         vue({
           template: {
             compilerOptions: {

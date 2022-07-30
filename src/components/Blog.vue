@@ -50,12 +50,15 @@ onMounted(async () => {
         encodeValuesOnly: true,
       }
     );
-    let response = await fetch(`__SITE_BASE__/api/blog-posts?${SummaryData}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let response = await fetch(
+      `${import.meta.env.VITE_STRAPI_URL}/api/blog-posts?${SummaryData}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     let blogSummary = await response.json();
     cards.value = blogSummary.data;
   } catch (e) {

@@ -38,12 +38,15 @@ let aboutImageUrl = ref<string>();
 onMounted(async () => {
   try {
     //use this if I need to get Images as well as content - '/api/blog-posts?populate=*'
-    const response = await fetch("__SITE_BASE__/api/about-me?populate=*", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      import.meta.env.VITE_STRAPI_URL + "/api/about-me?populate=*",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     let entireResponse = await response.json();
     state.about = marked.parse(
       await entireResponse.data.attributes.AboutContent

@@ -31,12 +31,15 @@ function UpdateIsMenu(isMenuUpdate: boolean) {
 
 onMounted(async () => {
   try {
-    let response = await fetch("__SITE_BASE__/api/landing?populate=*", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let response = await fetch(
+      import.meta.env.VITE_STRAPI_URL + "/api/landing?populate=*",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     let entireResponse = await response.json();
     landingImage.value = await entireResponse.data.attributes.LandingImage.data
       .attributes.url;

@@ -39,12 +39,15 @@ let contactLinks = ref<LinksInt[]>([]);
 onMounted(async () => {
   try {
     //use this if I need to get Images as well as content - '/api/blog-posts?populate=*'
-    let response = await fetch("__SITE_BASE__/api/contact?populate=*", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let response = await fetch(
+      import.meta.env.VITE_STRAPI_URL + "/api/contact?populate=*",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     let entireResponse = await response.json();
     contactContent.value = marked.parse(
       await entireResponse.data.attributes.ContactContent
