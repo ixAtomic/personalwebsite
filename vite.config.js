@@ -1,5 +1,5 @@
 // vite.config.js
-
+import { replaceCodePlugin } from "vite-plugin-replace";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
@@ -8,23 +8,15 @@ const path = require("path");
 export default defineConfig((command) => {
   if (command === "build") {
     return {
-      publicDir: "https://jaredsauve.com",
-      server: {
-        proxy: {
-          "^/api/*": {
-            target: "https://strapi.jaredsauve.com",
-            secure: false,
-            changeOrigin: true,
-          },
-          "^/uploads/*": {
-            target: "https://strapi.jaredsauve.com",
-            secure: false,
-            changeOrigin: true,
-          },
-        },
-        port: 8080,
-      },
       plugins: [
+        replaceCodePlugin({
+          replacements: [
+            {
+              from: "__SITE_BASE__",
+              to: "https://strapi.jaredsauve.com",
+            },
+          ],
+        }),
         vue({
           template: {
             compilerOptions: {
@@ -44,7 +36,6 @@ export default defineConfig((command) => {
     };
   } else {
     return {
-      publicDir: "http://localhost:8080",
       server: {
         proxy: {
           "^/api/*": {
@@ -61,6 +52,14 @@ export default defineConfig((command) => {
         port: 8080,
       },
       plugins: [
+        replaceCodePlugin({
+          replacements: [
+            {
+              from: "__SITE_BASE__",
+              to: "http://localhost:8080",
+            },
+          ],
+        }),
         vue({
           template: {
             compilerOptions: {

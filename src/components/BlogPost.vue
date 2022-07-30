@@ -45,12 +45,15 @@ onMounted(async () => {
       encodeValuesOnly: true,
     }
   );
-  let response = await fetch(`api/blog-posts/${props.BlogID}?${PostContent}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  let response = await fetch(
+    `__SITE_BASE__/api/blog-posts/${props.BlogID}?${PostContent}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   blogContent.value = await response.json();
   content.value = await blogContent.value.data.attributes;
   let BlogContents = await blogContent.value.data.attributes.blog_post_contents

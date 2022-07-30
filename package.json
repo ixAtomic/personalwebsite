@@ -17,6 +17,7 @@
     "@vue/compat": "^3.2.37",
     "marked": "^4.0.10",
     "qs": "^6.11.0",
+    "vite-plugin-replace": "^0.1.1",
     "vue": "^3.2.37",
     "vue-loader": "^17.0.0",
     "vue-router": "^4.0.13"

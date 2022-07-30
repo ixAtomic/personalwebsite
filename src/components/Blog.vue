@@ -50,7 +50,7 @@ onMounted(async () => {
         encodeValuesOnly: true,
       }
     );
-    let response = await fetch(`api/blog-posts?${SummaryData}`, {
+    let response = await fetch(`__SITE_BASE__/api/blog-posts?${SummaryData}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

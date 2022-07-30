@@ -31,7 +31,7 @@ function UpdateIsMenu(isMenuUpdate: boolean) {
 
 onMounted(async () => {
   try {
-    let response = await fetch("/api/landing?populate=*", {
+    let response = await fetch("__SITE_BASE__/api/landing?populate=*", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

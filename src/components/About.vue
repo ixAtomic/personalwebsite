@@ -38,7 +38,7 @@ let aboutImageUrl = ref<string>();
 onMounted(async () => {
   try {
     //use this if I need to get Images as well as content - '/api/blog-posts?populate=*'
-    const response = await fetch("/api/about-me?populate=*", {
+    const response = await fetch("__SITE_BASE__/api/about-me?populate=*", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
