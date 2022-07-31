@@ -1,24 +1,26 @@
 <template>
-  <div class="nav-menu">
-    <div
-      :class="{ display: childMenu }"
-      class="menu"
-      @click="updateMenu(childMenu)"
-    >
-      <font-awesome-icon :icon="['fas', 'bars']" />
+  <div :class="{ 'nav-display': childMenu }" class="navigation">
+    <div class="burger-header">
+      <div @click="updateMenu(childMenu)" class="burger-container">
+        <HamburgerBar :is-activated="childMenu"></HamburgerBar>
+      </div>
     </div>
-    <div
-      :class="{ display: !childMenu }"
-      class="menu"
-      @click="updateMenu(childMenu)"
-    >
-      <font-awesome-icon :icon="['fas', 'minus-circle']" />
+    <div class="navbar">
+      <div class="nav-items">
+        <ul>
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/about">About Me</router-link></li>
+          <li><router-link to="/Blog">Blog</router-link></li>
+          <li><router-link to="/contact">Contact</router-link></li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import HamburgerBar from "./HamburgerBar.vue";
 
 const emits = defineEmits(["UpdateIsMenu"]);
 
@@ -30,26 +32,60 @@ function updateMenu(childMenuUpdate: Boolean) {
 }
 </script>
 
-<style>
-.menu {
+<style lang="scss">
+.burger-header {
+  min-height: 50px;
+  display: none;
+}
+.burger-container {
+  padding: 30px 40px;
+}
+.navigation {
   display: none;
 }
 @media (min-width: 320px) and (max-width: 767px) {
-  .nav-menu {
+  .nav-display {
+    .navbar {
+      margin-right: -600px;
+    }
+  }
+  .navigation {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    min-height: 125px;
   }
-  .menu {
-    cursor: pointer;
-    font-size: 48px;
-    margin-right: 35px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    display: none;
+  .navbar {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    justify-content: center;
+    height: 120%;
+    background: black;
+    width: 70%;
+    opacity: 85%;
+    transition: margin 0.5s ease-in-out;
   }
-  .display {
-    display: block;
+  .nav-items {
+    height: fit-content;
+    width: 200px;
+    color: white;
+    li {
+      a {
+        color: white;
+        text-decoration: none;
+      }
+      padding: 15px 0px;
+    }
+  }
+  .burger-header {
+    display: flex;
+    justify-content: flex-end;
+    // align-items: center;
+    z-index: 1;
+    min-height: max-content;
+    width: 100%;
   }
 }
 </style>

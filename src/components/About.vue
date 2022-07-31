@@ -1,6 +1,7 @@
 <template>
   <div class="gutters">
     <jared-header></jared-header>
+    <hamburger></hamburger>
     <div class="about-main">
       <div class="about-content">
         <div class="header-content">
@@ -8,6 +9,7 @@
           <a
             :href="state.resume.url"
             :download="state.resume.name"
+            target="_blank"
             class="wrapper"
           >
             <font-awesome-icon class="resume" :icon="['far', 'file']" />
@@ -25,6 +27,7 @@
 
 <script lang="ts" setup>
 import JaredHeader from "./JaredHeader.vue";
+import Hamburger from "./Hamburger.vue";
 import { marked } from "marked";
 import { onMounted, reactive, ref } from "vue";
 
@@ -69,12 +72,12 @@ async function getResumeURL(url: string) {
 </script>
 
 <style lang="scss">
-.gutters {
-  margin: 0px 150px;
-}
 .about-main {
   display: flex;
   gap: 20px;
+  position: relative;
+  overflow: hidden;
+  padding-top: 25px;
 
   .about-content {
     flex: 1;

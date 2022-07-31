@@ -68,49 +68,47 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-.gutters {
-  margin: 0px 150px;
-  .box {
+.box {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  padding-top: 25px;
+  :hover + .display {
+    visibility: visible;
+    transition: visibility 0s, opacity 400ms linear;
+    opacity: 1;
+  }
+  .image-box {
+    height: 300px;
+    overflow: hidden;
+    img {
+      transition: transform 5s ease;
+      height: auto;
+      width: 450px;
+    }
+    :hover {
+      transform: scale(1.2);
+    }
+  }
+  .display {
+    position: absolute;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.85);
+    opacity: 0;
+    color: white;
+    z-index: 1;
+    pointer-events: none;
+    width: 100%;
+    height: 115px;
+    //height: 100%;
     display: flex;
-    justify-content: flex-end;
     flex-direction: column;
+    overflow: hidden;
     align-items: center;
-    flex: 1;
-    position: relative;
-    :hover + .display {
-      visibility: visible;
-      transition: visibility 0s, opacity 400ms linear;
-      opacity: 1;
-    }
-    .image-box {
-      height: 300px;
-      overflow: hidden;
-      img {
-        transition: transform 5s ease;
-        height: auto;
-        width: 450px;
-      }
-      :hover {
-        transform: scale(1.2);
-      }
-    }
-    .display {
-      position: absolute;
-      visibility: hidden;
-      background: rgba(0, 0, 0, 0.85);
-      opacity: 0;
-      color: white;
-      z-index: 1;
-      pointer-events: none;
-      width: 100%;
-      height: 115px;
-      //height: 100%;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      align-items: center;
-      justify-content: center;
-    }
+    justify-content: center;
   }
 }
 

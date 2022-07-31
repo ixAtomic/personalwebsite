@@ -1,7 +1,7 @@
 <template>
-  <div v-if="content" class="gutters">
+  <div v-if="content" id="blog-padding" class="gutters">
     <jared-header></jared-header>
-    <h2>
+    <h2 class="pad-btm">
       {{ content.SummaryTitle }}
     </h2>
     <div class="post-data" v-for="(post, index) in Posts" :key="post.id">
@@ -73,33 +73,35 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-.gutters {
-  margin: 0px 150px;
+#blog-padding {
   padding-bottom: 100px;
-  .post-data {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 50px;
-    margin-bottom: 100px;
-  }
-  .post-image {
-    overflow: hidden;
-    img {
-      height: auto;
-      width: 600px;
-    }
-  }
-  .post-content {
-    flex: 1 1 50%;
-  }
-  .border-bottom {
-    padding-bottom: 75px;
-    border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+}
+.pad-btm {
+  padding-bottom: 25px;
+}
+.post-data {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin-bottom: 100px;
+}
+.post-image {
+  overflow: hidden;
+  img {
+    height: auto;
     width: 600px;
   }
-  .class-order {
-    order: -1;
-  }
+}
+.post-content {
+  flex: 1 1 50%;
+}
+.border-bottom {
+  padding-bottom: 75px;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+  width: 600px;
+}
+.class-order {
+  order: -1;
 }
 </style>

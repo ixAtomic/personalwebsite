@@ -1,8 +1,8 @@
 <template>
   <div class="home-page">
+    <hamburger @UpdateIsMenu="UpdateIsMenu($event)"></hamburger>
     <div class="middle-justify">
-      <hamburger @UpdateIsMenu="UpdateIsMenu($event)"></hamburger>
-      <div v-if="isMenu" class="link-content">
+      <div class="link-content">
         <h2>Jared Sauve</h2>
         <p>Web Developer</p>
         <div class="main-nav">
@@ -11,7 +11,7 @@
           <router-link to="/contact">Contact</router-link>
         </div>
       </div>
-      <div v-if="isMenu" class="main-image">
+      <div class="main-image">
         <img :src="landingImage" />
       </div>
     </div>
@@ -128,6 +128,8 @@ onMounted(async () => {
 @media (min-width: 320px) and (max-width: 767px) {
   .home-page {
     justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
     .middle-justify {
       flex-direction: column;
       .link-content {

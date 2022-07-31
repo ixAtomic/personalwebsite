@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 * {
   margin: 0;
@@ -51,4 +50,8 @@ a {
   color: black;
   font-size: 24px; 
   text-decoration: underline;
+}
+
+.gutters {
+  margin: 0px 100px;
 }

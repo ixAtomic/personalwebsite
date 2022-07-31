@@ -2,7 +2,7 @@
   <div class="gutters">
     <jared-header></jared-header>
     <div class="contact-main">
-      <h2>Contact</h2>
+      <h2 class="pad-btm">Contact</h2>
       <div class="contact-content" v-html="contactContent"></div>
       <div class="links">
         <a :href="'mailto:' + email">
@@ -72,22 +72,22 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-.gutters {
-  margin: 0px 150px;
-  h2 {
+.pad-btm {
+  padding-bottom: 25px;
+}
+h2 {
+  margin-bottom: 30px;
+}
+.contact-content {
+  margin-bottom: 30px;
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  a {
+    width: fit-content;
     margin-bottom: 30px;
-  }
-  .contact-content {
-    margin-bottom: 30px;
-  }
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    a {
-      width: fit-content;
-      margin-bottom: 30px;
-    }
   }
 }
 </style>
