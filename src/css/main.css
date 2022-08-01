@@ -55,3 +55,11 @@ a {
 .gutters {
   margin: 0px 100px;
 }
+
+@media (max-width: 767px) {
+  .gutters {
+    margin: 0px;
+    position: relative;
+    overflow: hidden;
+  }
+}

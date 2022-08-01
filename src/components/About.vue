@@ -1,7 +1,6 @@
 <template>
-  <div class="gutters">
+  <div v-if="aboutImageUrl" class="gutters">
     <jared-header></jared-header>
-    <hamburger></hamburger>
     <div class="about-main">
       <div class="about-content">
         <div class="header-content">
@@ -13,8 +12,9 @@
             class="wrapper"
           >
             <font-awesome-icon class="resume" :icon="['far', 'file']" />
-            <p class="phase-in-text">Resume</p>
-          </a>
+            <p class="lgP">Resume</p>
+            <p class="smP">Resume</p></a
+          >
         </div>
         <div class="content" v-html="state.about"></div>
       </div>
@@ -23,11 +23,12 @@
       </div>
     </div>
   </div>
+  <loader-vue v-else></loader-vue>
 </template>
 
 <script lang="ts" setup>
 import JaredHeader from "./JaredHeader.vue";
-import Hamburger from "./Hamburger.vue";
+import LoaderVue from "./Loader.vue";
 import { marked } from "marked";
 import { onMounted, reactive, ref } from "vue";
 
@@ -74,14 +75,19 @@ async function getResumeURL(url: string) {
 <style lang="scss">
 .about-main {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
   position: relative;
   overflow: hidden;
   padding-top: 25px;
-
+  padding-bottom: 100px;
   .about-content {
     flex: 1;
-    height: 325px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
     .header-content {
       display: flex;
       align-items: center;
@@ -106,6 +112,10 @@ async function getResumeURL(url: string) {
           opacity: 0;
           transition: visibility 100ms, opacity 1s ease-in;
         }
+        .smP {
+          display: none;
+          text-decoration: underline;
+        }
       }
       .wrapper:hover {
         cursor: pointer;
@@ -120,10 +130,6 @@ async function getResumeURL(url: string) {
         }
       }
     }
-    .content {
-      height: 285px;
-      overflow: hidden;
-    }
   }
   .about-image {
     display: flex;
@@ -132,7 +138,56 @@ async function getResumeURL(url: string) {
     flex: 1;
     img {
       height: auto;
-      width: 465px;
+      width: 600px;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .about-main {
+    flex-direction: column-reverse;
+  }
+  .about-image {
+    padding-bottom: 50px;
+  }
+
+  .about-content {
+    justify-content: space-evenly;
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 990px) {
+  .wrapper {
+    flex-wrap: wrap;
+  }
+  .about-main .about-content .header-content {
+    .resume {
+      transition-duration: unset !important;
+      position: unset !important;
+    }
+    p {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transition: none !important;
+    }
+    .lgP {
+      display: none;
+    }
+    .smP {
+      display: block !important;
+    }
+    .wrapper:hover {
+      .resume {
+        transition-duration: unset !important;
+        transform: translateX(0px) !important;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .about-main {
+      margin: 0px 50px;
     }
   }
 }

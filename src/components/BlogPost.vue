@@ -1,31 +1,37 @@
 <template>
   <div v-if="content" id="blog-padding" class="gutters">
     <jared-header></jared-header>
-    <h2 class="pad-btm">
-      {{ content.SummaryTitle }}
-    </h2>
-    <div class="post-data" v-for="(post, index) in Posts" :key="post.id">
-      <div class="post-image">
-        <img
-          :src="post.BlogContent.attributes.BlogImage.data.attributes.url"
-          alt="aa"
-        />
+    <div class="post-main">
+      <h2 class="pad-btm">
+        {{ content.SummaryTitle }}
+      </h2>
+      <div class="post-data" v-for="(post, index) in Posts" :key="post.id">
+        <div class="post-image">
+          <img
+            :src="post.BlogContent.attributes.BlogImage.data.attributes.url"
+            alt="aa"
+          />
+        </div>
+        <div
+          :class="{ 'class-order': post.ImagePosition }"
+          class="post-content"
+          v-html="post.BlogContentHTML"
+        ></div>
+        <div v-if="index != Posts.length - 1" class="border-bottom">
+          <div class="border-line"></div>
+        </div>
+        <!-- not putting border on last element or only element if there is just one -->
       </div>
-      <div
-        :class="{ 'class-order': post.ImagePosition }"
-        class="post-content"
-        v-html="post.BlogContentHTML"
-      ></div>
-      <div v-if="index != Posts.length - 1" class="border-bottom" />
-      <!-- not putting border on last element or only element if there is just one -->
     </div>
   </div>
+  <loader-vue v-else></loader-vue>
 </template>
 
 <script setup lang="ts">
 import JaredHeader from "./JaredHeader.vue";
 import qs from "qs";
 import { PostsInt, ContentInt } from "@/models/PersonalModels";
+import LoaderVue from "./Loader.vue";
 import { marked } from "marked";
 import { onMounted, ref, Suspense } from "vue";
 
@@ -73,6 +79,10 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
+.post-main {
+  justify-content: center;
+  align-items: center;
+}
 #blog-padding {
   padding-bottom: 100px;
 }
@@ -80,28 +90,62 @@ onMounted(async () => {
   padding-bottom: 25px;
 }
 .post-data {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 50px;
-  margin-bottom: 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(400px, 38vw), 1fr));
+  grid-template-rows: auto auto auto;
+  grid-gap: 24px 40px;
+  align-items: center;
 }
 .post-image {
   overflow: hidden;
-  img {
-    height: auto;
-    width: 600px;
-  }
+  margin: 10px 0px;
+  display: flex;
 }
 .post-content {
   flex: 1 1 50%;
 }
 .border-bottom {
-  padding-bottom: 75px;
+  padding: 75px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  grid-column: 1/-1;
+}
+.border-line {
   border-bottom: 3px solid rgba(0, 0, 0, 0.2);
   width: 600px;
 }
 .class-order {
   order: -1;
+}
+
+@media (max-width: 1200px) {
+  .post-data {
+    grid-template-columns: 1fr;
+  }
+  .class-order {
+    order: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .post-data {
+    display: flex;
+    grid-template-columns: unset;
+    grid-template-rows: unset;
+    grid-gap: unset;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .post-image {
+    img {
+      width: 320px;
+    }
+  }
+  .post-main {
+    margin: 0px 50px;
+  }
 }
 </style>

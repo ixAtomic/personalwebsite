@@ -1,30 +1,36 @@
 <template>
   <div v-if="cards" class="gutters">
     <jared-header></jared-header>
-    <div>
-      <h2>Blog</h2>
-      <div class="cards">
-        <div class="box" v-for="card in cards" :key="card.id">
-          <router-link :to="{ path: '/blogpost', query: { BlogID: card.id } }">
-            <div class="image-box">
-              <img
-                :src="card.attributes.SummaryImage.data.attributes.url"
-                alt="aa"
-              />
-            </div>
-          </router-link>
-          <div class="display">
-            <p class="card-title">{{ card.attributes.SummaryTitle }}</p>
+    <div class="blog-gutter">
+      <div class="blog-main">
+        <h2>Blog</h2>
+        <div class="cards">
+          <div class="box" v-for="card in cards" :key="card.id">
+            <router-link
+              :to="{ path: '/blogpost', query: { BlogID: card.id } }"
+            >
+              <div class="image-box">
+                <img
+                  :src="card.attributes.SummaryImage.data.attributes.url"
+                  alt="aa"
+                />
+                <div class="display">
+                  <p class="card-title">{{ card.attributes.SummaryTitle }}</p>
+                </div>
+              </div>
+            </router-link>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <loader-vue v-else></loader-vue>
 </template>
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 import JaredHeader from "./JaredHeader.vue";
+import LoaderVue from "./Loader.vue";
 import qs from "qs";
 
 let cards = ref(null) as any;
@@ -72,7 +78,7 @@ onMounted(async () => {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   flex: 1;
   position: relative;
   padding-top: 25px;
@@ -82,12 +88,17 @@ onMounted(async () => {
     opacity: 1;
   }
   .image-box {
-    height: 300px;
+    //height: auto;
     overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
     img {
       transition: transform 5s ease;
-      height: auto;
       width: 450px;
+      //height: auto;
+      //flex-basis: 450px;
+      //flex-shrink: 0;
     }
     :hover {
       transform: scale(1.2);
@@ -95,14 +106,11 @@ onMounted(async () => {
   }
   .display {
     position: absolute;
-    visibility: hidden;
     background: rgba(0, 0, 0, 0.85);
-    opacity: 0;
     color: white;
     z-index: 1;
     pointer-events: none;
     width: 100%;
-    height: 115px;
     //height: 100%;
     display: flex;
     flex-direction: column;
@@ -114,9 +122,56 @@ onMounted(async () => {
 
 .cards {
   display: grid;
-  grid-template-columns: max-content max-content max-content;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
   column-gap: 75px;
   row-gap: 75px;
+}
+
+@media (min-width: 1200px) {
+  .display {
+    visibility: hidden;
+    opacity: 0;
+    height: 115px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .display {
+    height: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-gutter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .blog-main {
+    width: fit-content;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .box {
+    .image-box img {
+      width: 350px;
+    }
+    .display {
+      visibility: visible;
+    }
+  }
+
+  .blog-gutter {
+    margin: 0px 50px;
+    margin-bottom: 50px;
+  }
+  // .image-box {
+  //   width: 300px;
+  // }
 }
 </style>

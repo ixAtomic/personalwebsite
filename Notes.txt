@@ -1,7 +1,15 @@
 NOTES:
 
-Blog Post Images should be 400 x 300 = width x height
+--------------------------------------------------
+BLOG:
+
+Blog Post Images should be 1 x 1 = width x height
 
 to get the images to look good in a blog summary:
 
-- crop the image to 3:2 dimension
+- crop the image to 1:1 dimension
+--------------------------------------------------
+
+about me dimensions 
+
+4:3

@@ -1,6 +1,6 @@
 <template>
-  <div class="home-page">
-    <hamburger @UpdateIsMenu="UpdateIsMenu($event)"></hamburger>
+  <div v-if="landingImage" class="home-page">
+    <hamburger></hamburger>
     <div class="middle-justify">
       <div class="link-content">
         <h2>Jared Sauve</h2>
@@ -16,18 +16,15 @@
       </div>
     </div>
   </div>
+  <loader-vue v-else></loader-vue>
 </template>
 
 <script setup lang="ts">
 import Hamburger from "./Hamburger.vue";
+import LoaderVue from "./Loader.vue";
 import { ref, onMounted } from "vue";
 
 let landingImage = ref<string>();
-let isMenu = ref(true);
-
-function UpdateIsMenu(isMenuUpdate: boolean) {
-  isMenu.value = isMenuUpdate;
-}
 
 onMounted(async () => {
   try {

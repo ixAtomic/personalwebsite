@@ -1,5 +1,5 @@
 <template>
-  <div class="gutters">
+  <div v-if="contactContent" class="gutters">
     <jared-header></jared-header>
     <div class="contact-main">
       <h2 class="pad-btm">Contact</h2>
@@ -19,10 +19,12 @@
       </div>
     </div>
   </div>
+  <loader-vue v-else></loader-vue>
 </template>
 
 <script setup lang="ts">
 import JaredHeader from "./JaredHeader.vue";
+import LoaderVue from "./Loader.vue";
 import { marked } from "marked";
 import { onMounted, ref } from "vue";
 
@@ -88,6 +90,12 @@ h2 {
   a {
     width: fit-content;
     margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .contact-main {
+    margin: 0px 50px;
   }
 }
 </style>
