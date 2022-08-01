@@ -126,7 +126,7 @@ onMounted(async () => {
   .home-page {
     justify-content: flex-start;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
     .middle-justify {
       flex-direction: column;
       .link-content {

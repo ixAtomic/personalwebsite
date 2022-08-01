@@ -38,7 +38,7 @@ function updateMenu(childMenuUpdate: Boolean) {
 }
 .burger-container {
   padding: 30px 40px;
-  position: fixed;
+  position: absolute;
   z-index: 30;
 }
 .navigation {
@@ -59,6 +59,9 @@ function updateMenu(childMenuUpdate: Boolean) {
 }
 @media (min-width: 320px) and (max-width: 767px) {
   .nav-display {
+    .burger-container {
+      position: fixed;
+    }
     .navbar {
       margin-right: 0px;
     }
