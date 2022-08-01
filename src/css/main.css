@@ -61,6 +61,6 @@ a {
   .gutters {
     margin: 0px;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 }

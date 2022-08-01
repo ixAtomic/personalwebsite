@@ -4,15 +4,15 @@
       <div @click="updateMenu(childMenu)" class="burger-container">
         <HamburgerBar :is-activated="childMenu"></HamburgerBar>
       </div>
-    </div>
-    <div class="navbar">
-      <div class="nav-items">
-        <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/about">About Me</router-link></li>
-          <li><router-link to="/Blog">Blog</router-link></li>
-          <li><router-link to="/contact">Contact</router-link></li>
-        </ul>
+      <div class="navbar">
+        <div class="nav-items">
+          <ul>
+            <li><router-link to="/">Home</router-link></li>
+            <li><router-link to="/about">About Me</router-link></li>
+            <li><router-link to="/Blog">Blog</router-link></li>
+            <li><router-link to="/contact">Contact</router-link></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -38,9 +38,24 @@ function updateMenu(childMenuUpdate: Boolean) {
 }
 .burger-container {
   padding: 30px 40px;
+  position: fixed;
+  z-index: 30;
 }
 .navigation {
   display: none;
+}
+.navbar {
+  position: fixed;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  height: 100%;
+  background: black;
+  width: 70%;
+  opacity: 85%;
+  margin-right: -600px;
+  z-index: 5;
+  transition: margin 0.5s ease-in-out;
 }
 @media (min-width: 320px) and (max-width: 767px) {
   .nav-display {
@@ -53,19 +68,7 @@ function updateMenu(childMenuUpdate: Boolean) {
     justify-content: flex-end;
     width: 100%;
     min-height: 125px;
-  }
-  .navbar {
-    position: absolute;
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    height: 120%;
-    background: black;
-    width: 70%;
-    opacity: 85%;
-    margin-right: -600px;
-    z-index: 5;
-    transition: margin 0.5s ease-in-out;
+    height: 125px;
   }
   .nav-items {
     height: fit-content;
