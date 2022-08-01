@@ -81,7 +81,6 @@ onMounted(async () => {
   align-items: flex-start;
   flex: 1;
   position: relative;
-  padding-top: 25px;
   :hover + .display {
     visibility: visible;
     transition: visibility 0s, opacity 400ms linear;
@@ -156,6 +155,8 @@ onMounted(async () => {
   }
   .cards {
     grid-template-columns: 1fr;
+    row-gap: 75px;
+    margin-top: 25px;
   }
   .box {
     .image-box img {

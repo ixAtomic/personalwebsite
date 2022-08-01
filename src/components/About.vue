@@ -3,19 +3,17 @@
     <jared-header></jared-header>
     <div class="about-main">
       <div class="about-content">
-        <div class="header-content">
-          <h2>About Me</h2>
-          <a
-            :href="state.resume.url"
-            :download="state.resume.name"
-            target="_blank"
-            class="wrapper"
-          >
-            <font-awesome-icon class="resume" :icon="['far', 'file']" />
-            <p class="lgP">Resume</p>
-            <p class="smP">Resume</p></a
-          >
-        </div>
+        <h2>About Me</h2>
+        <a
+          :href="state.resume.url"
+          :download="state.resume.name"
+          target="_blank"
+          class="wrapper"
+        >
+          <font-awesome-icon class="resume" :icon="['far', 'file']" />
+          <p class="lgP">Resume</p>
+          <p class="smP">Resume</p></a
+        >
         <div class="content" v-html="state.about"></div>
       </div>
       <div class="about-image">
@@ -85,51 +83,11 @@ async function getResumeURL(url: string) {
   .about-content {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     height: fit-content;
-    .header-content {
-      display: flex;
-      align-items: center;
-      position: relative;
-      margin-bottom: 30px;
-      h2 {
-        //margin-bottom: 50px;
-        width: 100%;
-      }
-      .wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .resume {
-          position: absolute;
-          transition-duration: 400ms;
-          font-size: 64px;
-        }
-        p {
-          visibility: hidden;
-          opacity: 0;
-          transition: visibility 100ms, opacity 1s ease-in;
-        }
-        .smP {
-          display: none;
-          text-decoration: underline;
-        }
-      }
-      .wrapper:hover {
-        cursor: pointer;
-        .resume {
-          transition-duration: 1s;
-          transform: translateX(-80px);
-        }
-        p {
-          opacity: 1;
-          text-decoration: underline;
-          visibility: visible;
-        }
-      }
-    }
+    flex-wrap: wrap;
+    gap: 35px;
   }
   .about-image {
     display: flex;
@@ -140,6 +98,41 @@ async function getResumeURL(url: string) {
       height: auto;
       width: 600px;
     }
+  }
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .resume {
+      position: absolute;
+      transition-duration: 400ms;
+      font-size: 64px;
+    }
+    p {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 100ms, opacity 1s ease-in;
+    }
+    .smP {
+      display: none;
+      text-decoration: underline;
+    }
+  }
+  .wrapper:hover {
+    cursor: pointer;
+    .resume {
+      transition-duration: 1s;
+      transform: translateX(-80px);
+    }
+    p {
+      opacity: 1;
+      text-decoration: underline;
+      visibility: visible;
+    }
+  }
+  .content {
+    width: 100%;
   }
 }
 
@@ -160,32 +153,36 @@ async function getResumeURL(url: string) {
 @media (max-width: 990px) {
   .wrapper {
     flex-wrap: wrap;
+    flex-direction: column;
   }
-  .about-main .about-content .header-content {
+  .resume {
+    transition-duration: unset !important;
+    position: unset !important;
+    width: 100%;
+  }
+  p {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .lgP {
+    display: none;
+  }
+  .smP {
+    display: block !important;
+  }
+  .wrapper:hover {
     .resume {
       transition-duration: unset !important;
-      position: unset !important;
-    }
-    p {
-      visibility: visible !important;
-      opacity: 1 !important;
-      transition: none !important;
-    }
-    .lgP {
-      display: none;
-    }
-    .smP {
-      display: block !important;
-    }
-    .wrapper:hover {
-      .resume {
-        transition-duration: unset !important;
-        transform: translateX(0px) !important;
-      }
+      transform: translateX(0px) !important;
     }
   }
 
   @media (max-width: 767px) {
+    .wrapper {
+      order: 5;
+      width: 100%;
+    }
     .about-main {
       margin: 0px 50px;
     }
