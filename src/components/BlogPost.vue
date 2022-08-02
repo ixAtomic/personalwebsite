@@ -137,15 +137,27 @@ onMounted(async () => {
     grid-gap: unset;
     flex-wrap: wrap;
     justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .pad-btm {
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 36px;
   }
 
   .post-image {
     img {
       width: 320px;
     }
+    margin-bottom: 35px;
   }
   .post-main {
     margin: 0px 50px;
+  }
+  .border-bottom {
+    width: 100%;
   }
 }
 </style>

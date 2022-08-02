@@ -125,6 +125,7 @@ onMounted(async () => {
   grid-template-rows: auto auto auto;
   column-gap: 75px;
   row-gap: 75px;
+  margin-top: 35px;
 }
 
 @media (min-width: 1200px) {
@@ -136,6 +137,9 @@ onMounted(async () => {
 }
 
 @media (max-width: 1200px) {
+  .blog-main {
+    padding-bottom: 50px;
+  }
   .cards {
     grid-template-columns: 1fr 1fr;
   }
@@ -156,7 +160,7 @@ onMounted(async () => {
   .cards {
     grid-template-columns: 1fr;
     row-gap: 75px;
-    margin-top: 25px;
+    margin-top: 35px;
   }
   .box {
     .image-box img {
