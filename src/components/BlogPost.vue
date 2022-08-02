@@ -100,6 +100,7 @@ onMounted(async () => {
   overflow: hidden;
   margin: 10px 0px;
   display: flex;
+  justify-content: center;
 }
 .post-content {
   flex: 1 1 50%;
