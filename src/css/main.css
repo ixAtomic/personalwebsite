@@ -39,6 +39,17 @@ h2 {
   letter-spacing: 0em;
   text-align: left; }
 
+h3{
+  font-family: Heebo;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: 0em;
+  text-align: left; 
+  margin-bottom: 30px
+}
+
 p {
   font-family: Heebo;
   font-style: normal;
@@ -62,5 +73,15 @@ a {
     margin: 0px;
     position: relative;
     overflow-x: hidden;
+  }
+  h3{
+    font-family: Heebo;
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 26px;
+    line-height: 40px;
+    letter-spacing: 0em;
+    text-align: left; 
+    margin-bottom: 30px
   }
 }
