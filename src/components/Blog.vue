@@ -45,32 +45,32 @@ const SummaryData = qs.stringify(
   }
 );
 
-onMounted(async () => {
-  try {
-    const SummaryData = qs.stringify(
-      {
-        populate: "SummaryImage",
-        fields: ["SummaryTitle"],
-      },
-      {
-        encodeValuesOnly: true,
-      }
-    );
-    let response = await fetch(
-      `${import.meta.env.VITE_STRAPI_URL}/api/blog-posts?${SummaryData}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    let blogSummary = await response.json();
-    cards.value = blogSummary.data;
-  } catch (e) {
-    console.log("error");
-  }
-});
+// onMounted(async () => {
+//   try {
+//     const SummaryData = qs.stringify(
+//       {
+//         populate: "SummaryImage",
+//         fields: ["SummaryTitle"],
+//       },
+//       {
+//         encodeValuesOnly: true,
+//       }
+//     );
+//     let response = await fetch(
+//       `${import.meta.env.VITE_STRAPI_URL}/api/blog-posts?${SummaryData}`,
+//       {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+//     let blogSummary = await response.json();
+//     cards.value = blogSummary.data;
+//   } catch (e) {
+//     console.log("error");
+//   }
+// });
 </script>
 
 <style lang="scss">

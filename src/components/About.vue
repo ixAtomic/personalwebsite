@@ -5,8 +5,8 @@
       <div class="about-content">
         <h2>About Me</h2>
         <a
-          :href="state.resume.url"
-          :download="state.resume.name"
+          :href="'https://res.cloudinary.com/jared-sauve-website/image/upload/v1659146405/Jared_Resume_c0b99f147f.pdf'"
+          :download="'Jared Resume'"
           target="_blank"
           class="wrapper"
         >
@@ -14,7 +14,7 @@
           <p class="lgP">Resume</p>
           <p class="smP">Resume</p></a
         >
-        <div class="content" v-html="state.about"></div>
+        <div class="content">{{ about.AboutMe.content }}</div>
       </div>
       <div class="about-image">
         <img :src="aboutImageUrl" />
@@ -27,43 +27,17 @@
 <script lang="ts" setup>
 import JaredHeader from "./JaredHeader.vue";
 import LoaderVue from "./Loader.vue";
+import about from '@/assets/content/about.json';
 import { marked } from "marked";
 import { onMounted, reactive, ref } from "vue";
+import aboutImageUrl from '../../photos/JaredStars1-1.jpg';
 
 const state = reactive({
   resume: { url: "", name: "" },
   about: "",
 });
 
-let aboutImageUrl = ref<string>();
-
-onMounted(async () => {
-  try {
-    //use this if I need to get Images as well as content - '/api/blog-posts?populate=*'
-    const response = await fetch(
-      import.meta.env.VITE_STRAPI_URL + "/api/about-me?populate=*",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    let entireResponse = await response.json();
-    state.about = marked.parse(
-      await entireResponse.data.attributes.AboutContent
-    );
-    aboutImageUrl.value = await entireResponse.data.attributes.AboutImage.data
-      .attributes.url;
-    getResumeURL(
-      await entireResponse.data.attributes.Resume.data.attributes.url
-    );
-    state.resume.name = await entireResponse.data.attributes.Resume.data
-      .attributes.name;
-  } catch (e) {
-    console.log("Error getting post");
-  }
-});
+//let aboutImageUrl = ref<string>();
 
 async function getResumeURL(url: string) {
   state.resume.url = url;

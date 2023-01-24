@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="main-image">
-        <img :src="landingImage" />
+        <img :src="landingImage" /> -->
       </div>
     </div>
   </div>
@@ -23,26 +23,12 @@
 import Hamburger from "./Hamburger.vue";
 import LoaderVue from "./Loader.vue";
 import { ref, onMounted } from "vue";
+import landingImage from "../../photos/MainImage1-1.jpg"
 
-let landingImage = ref<string>();
+//let landingImage = ref<string>();
 
 onMounted(async () => {
-  try {
-    let response = await fetch(
-      import.meta.env.VITE_STRAPI_URL + "/api/landing?populate=*",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    let entireResponse = await response.json();
-    landingImage.value = await entireResponse.data.attributes.LandingImage.data
-      .attributes.url;
-  } catch (e) {
-    console.log("error");
-  }
+
 });
 </script>
 

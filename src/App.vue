@@ -6,12 +6,13 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { configureCompat } from "vue";
 
 configureCompat({
   WATCH_ARRAY: false,
 });
+
 </script>
 
 <style>
