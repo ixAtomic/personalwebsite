@@ -1,5 +1,6 @@
 <template>
-  <div v-if="landingImage" class="home-page">
+  <loader-vue v-if="loading"></loader-vue>
+  <div v-else-if="result" class="home-page">
     <hamburger></hamburger>
     <div class="middle-justify">
       <div class="link-content">
@@ -12,24 +13,21 @@
         </div>
       </div>
       <div class="main-image">
-        <img :src="landingImage" /> -->
+        <img :src="getAssetURL(result.Landing.MainImage.id)" />
       </div>
     </div>
   </div>
-  <loader-vue v-else></loader-vue>
 </template>
 
 <script setup lang="ts">
-import Hamburger from "./Hamburger.vue";
-import LoaderVue from "./Loader.vue";
+import Hamburger from "@/components/Hamburger.vue";
+import LoaderVue from "@/components/Loader.vue";
 import { ref, onMounted } from "vue";
-import landingImage from "../../photos/MainImage1-1.jpg"
+import { GET_LANDING_PAGE } from "@/graphql"
+import { useQuery } from '@vue/apollo-composable'
+import { getAssetURL } from "@/helper";
 
-//let landingImage = ref<string>();
-
-onMounted(async () => {
-
-});
+const { result, loading } = useQuery(GET_LANDING_PAGE);
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

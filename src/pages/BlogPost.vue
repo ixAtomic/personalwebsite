@@ -1,81 +1,44 @@
 <template>
-  <div v-if="content" id="blog-padding" class="gutters">
+  <loader-vue v-if="loading"></loader-vue>
+  <div v-else-if="result" id="blog-padding" class="gutters">
     <jared-header></jared-header>
     <div class="post-main">
       <h2 class="pad-btm">
-        {{ content.SummaryTitle }}
+        {{ result.Title }}
       </h2>
-      <div class="post-data" v-for="(post, index) in Posts" :key="post.id">
+      <div class="post-data" v-for="(section, index) in result.BlogPosts_by_id.SectionID" :key="result.BlogPosts_by_id.SectionID.id">
         <div class="post-image">
           <img
-            :src="post.BlogContent.attributes.BlogImage.data.attributes.url"
+            :src="getAssetURL(section.SectionImage.id)"
             alt="aa"
           />
         </div>
         <div
-          :class="{ 'class-order': post.ImagePosition }"
+          :class="{ 'class-order': section.Position }"
           class="post-content"
-          v-html="post.BlogContentHTML"
+          v-html="section.SectionContent"
         ></div>
-        <div v-if="index != Posts.length - 1" class="border-bottom">
+        <div v-if="index != result.BlogPosts_by_id.SectionID.length - 1" class="border-bottom">
           <div class="border-line"></div>
         </div>
         <!-- not putting border on last element or only element if there is just one -->
       </div>
     </div>
   </div>
-  <loader-vue v-else></loader-vue>
 </template>
 
 <script setup lang="ts">
-import JaredHeader from "./JaredHeader.vue";
-import qs from "qs";
-import { PostsInt, ContentInt } from "@/models/PersonalModels";
-import LoaderVue from "./Loader.vue";
-import { marked } from "marked";
-import { onMounted, ref, Suspense } from "vue";
+import JaredHeader from "@/components/JaredHeader.vue";
+import LoaderVue from "@/components/Loader.vue";
+import { GET_BLOGPOST_PAGE } from "@/graphql";
+import { useQuery } from "@vue/apollo-composable";
+import { getAssetURL } from "@/helper";
 
 const props = defineProps({ BlogID: String });
 
-let content = ref(null) as any;
-let blogContent = ref(null) as any;
-let Posts = ref<PostsInt[]>([]);
+const { result, loading } = useQuery(GET_BLOGPOST_PAGE, { BlogID: props.BlogID });
+console.log(result);
 
-onMounted(async () => {
-  const PostContent = qs.stringify(
-    {
-      populate: ["blog_post_contents", "blog_post_contents.BlogImage"],
-      fields: ["SummaryTitle"],
-    },
-    {
-      encodeValuesOnly: true,
-    }
-  );
-  let response = await fetch(
-    `${import.meta.env.VITE_STRAPI_URL}/api/blog-posts/${
-      props.BlogID
-    }?${PostContent}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  blogContent.value = await response.json();
-  content.value = await blogContent.value.data.attributes;
-  let BlogContents = await blogContent.value.data.attributes.blog_post_contents
-    .data;
-  for (let BlogContent of BlogContents) {
-    let BlogContentHTML = marked.parse(BlogContent.attributes.BlogContent);
-    Posts.value.push({
-      id: BlogContent.id,
-      BlogContent: BlogContent,
-      BlogContentHTML: BlogContentHTML,
-      ImagePosition: BlogContent.attributes.ImagePosition,
-    });
-  }
-});
 </script>
 
 <style lang="scss">

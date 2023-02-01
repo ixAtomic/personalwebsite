@@ -1,11 +1,12 @@
 <template>
-  <div v-if="aboutImageUrl" class="gutters">
+  <loader-vue v-if="loading"></loader-vue>
+  <div v-else-if="result" class="gutters">
     <jared-header></jared-header>
     <div class="about-main">
       <div class="about-content">
         <h2>About Me</h2>
         <a
-          :href="'https://res.cloudinary.com/jared-sauve-website/image/upload/v1659146405/Jared_Resume_c0b99f147f.pdf'"
+          :href="getAssetURL(result.About.Resume.id)"
           :download="'Jared Resume'"
           target="_blank"
           class="wrapper"
@@ -14,34 +15,27 @@
           <p class="lgP">Resume</p>
           <p class="smP">Resume</p></a
         >
-        <div class="content">{{ about.AboutMe.content }}</div>
+        <div class="content" v-html="result.About.AboutContent"></div>
       </div>
       <div class="about-image">
-        <img :src="aboutImageUrl" />
+        <img :src="getAssetURL(result.About.AboutImage.id)" />
       </div>
     </div>
   </div>
-  <loader-vue v-else></loader-vue>
 </template>
 
 <script lang="ts" setup>
-import JaredHeader from "./JaredHeader.vue";
-import LoaderVue from "./Loader.vue";
+import JaredHeader from "@/components/JaredHeader.vue";
+import LoaderVue from "@/components/Loader.vue";
 import about from '@/assets/content/about.json';
-import { marked } from "marked";
 import { onMounted, reactive, ref } from "vue";
-import aboutImageUrl from '../../photos/JaredStars1-1.jpg';
+import { useQuery } from '@vue/apollo-composable';
+import { GET_ABOUT_PAGE } from '@/graphql'
+import { getAssetURL } from "@/helper";
 
-const state = reactive({
-  resume: { url: "", name: "" },
-  about: "",
-});
+const { result, loading } = useQuery(GET_ABOUT_PAGE);
 
-//let aboutImageUrl = ref<string>();
-
-async function getResumeURL(url: string) {
-  state.resume.url = url;
-}
+console.log(result);
 </script>
 
 <style lang="scss">

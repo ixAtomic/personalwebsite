@@ -1,21 +1,22 @@
 <template>
-  <div v-if="cards" class="gutters">
+  <loader-vue v-if="loading"></loader-vue>
+  <div v-else-if="result" class="gutters">
     <jared-header></jared-header>
     <div class="blog-gutter">
       <div class="blog-main">
         <h2>Blog</h2>
         <div class="cards">
-          <div class="box" v-for="card in cards" :key="card.id">
+          <div class="box" v-for="card in result.Blog.BlogID" :key="card.id">
             <router-link
               :to="{ path: '/blogpost', query: { BlogID: card.id } }"
             >
               <div class="image-box">
                 <img
-                  :src="card.attributes.SummaryImage.data.attributes.url"
+                  :src="getAssetURL(card.BlogImage.id)"
                   alt="aa"
                 />
                 <div class="display">
-                  <p class="card-title">{{ card.attributes.SummaryTitle }}</p>
+                  <p class="card-title">{{ card.Title }}</p>
                 </div>
               </div>
             </router-link>
@@ -24,53 +25,17 @@
       </div>
     </div>
   </div>
-  <loader-vue v-else></loader-vue>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
-import JaredHeader from "./JaredHeader.vue";
-import LoaderVue from "./Loader.vue";
-import qs from "qs";
+import JaredHeader from "@/components/JaredHeader.vue";
+import LoaderVue from "@/components/Loader.vue";
+import { useQuery } from "@vue/apollo-composable";
+import { GET_BLOG_PAGE } from "@/graphql";
+import { getAssetURL } from "@/helper";
 
-let cards = ref(null) as any;
+const { result, loading } = useQuery(GET_BLOG_PAGE);
 
-const SummaryData = qs.stringify(
-  {
-    populate: "SummaryImage",
-    fields: ["SummaryTitle"],
-  },
-  {
-    encodeValuesOnly: true,
-  }
-);
-
-// onMounted(async () => {
-//   try {
-//     const SummaryData = qs.stringify(
-//       {
-//         populate: "SummaryImage",
-//         fields: ["SummaryTitle"],
-//       },
-//       {
-//         encodeValuesOnly: true,
-//       }
-//     );
-//     let response = await fetch(
-//       `${import.meta.env.VITE_STRAPI_URL}/api/blog-posts?${SummaryData}`,
-//       {
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       }
-//     );
-//     let blogSummary = await response.json();
-//     cards.value = blogSummary.data;
-//   } catch (e) {
-//     console.log("error");
-//   }
-// });
 </script>
 
 <style lang="scss">

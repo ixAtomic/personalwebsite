@@ -1,52 +1,15 @@
 
 import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from "vue-router";
-import App from './App.vue'
-import MainPage from "./components/MainPage.vue";
-import About from "./components/About.vue";
-import Blog from "./components/Blog.vue";
-import Contact from "./components/Contact.vue";
-import BlogPost from "./components/BlogPost.vue";
 
-
-const router = createRouter({
+export const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {
-            path: "/",
-            name: "",
-            component: App,
-            children: [
-                {
-                    path: "",
-                    component: MainPage
-                },
-                {
-                    path: "about",
-                    name: "about",
-                    component: About
-                },
-                {
-                    path: "blog",
-                    name: "blog",
-                    component: Blog
-                },
-                {
-                    path: "blogpost",
-                    name: "blogpost",
-                    props(route){
-                        return { BlogID: route.query.BlogID }
-                    },
-                    component: BlogPost
-                },
-                {
-                    path: "contact",
-                    name: "contact",
-                    component: Contact
-                }
-            ]
-        },
+        { path: "/", name: "home", component: () => import('./App.vue') },
+        { path: "", component: () => import("./pages/MainPage.vue") },
+        { path: "/about", name: "about", component: () => import("./pages/About.vue")},
+        { path: "/blog", name: "blog", component: () => import("./pages/blog.vue")},
+        { path: "/blogpost", name: "blogpost", props(route){ return { BlogID: route.query.BlogID } }, component: () => import("./pages/blogpost.vue")},
+        { path: "/contact", name: "contact",  component: () => import("./pages/contact.vue")}
     ],
-})
-
-export default router
+});
 

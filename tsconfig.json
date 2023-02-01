@@ -8,6 +8,8 @@
     "importHelpers": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "allowJs": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

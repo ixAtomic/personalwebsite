@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-    readonly VITE_STRAPI_URL: string
+    readonly VITE_DIRECTUS_ASSETS_URL: string
 }
