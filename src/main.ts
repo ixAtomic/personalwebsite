@@ -12,13 +12,13 @@ import { ApolloClients } from '@vue/apollo-composable'
 
 const graphqlHttp = createHttpLink({
     // You should use an absolute URL here
-    uri: 'http://localhost:8055/graphql',
+    uri: import.meta.env.VITE_DIRECTUS_ASSETS_URL + 'graphql',
     
 });
 
 const graphqlSystemHttp = createHttpLink({
     // You should use an absolute URL here
-    uri: 'http://localhost:8055/graphql/system',
+    uri: import.meta.env.VITE_DIRECTUS_ASSETS_URL + 'graphql/system',
 });
 
 const cache = new InMemoryCache();
