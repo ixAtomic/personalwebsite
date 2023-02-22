@@ -14,8 +14,8 @@ const graphqlHttp = createHttpLink({
     // You should use an absolute URL here
     uri: import.meta.env.VITE_DIRECTUS_ASSETS_URL + 'graphql',
     headers: {
-        'CF-Access-Client-Id': import.meta.env.CF_ACCESS_Client_ID,
-        'CF-Access-Client-Secret': import.meta.env.CF_Access_Client_Secret
+        'CF-Access-Client-Id': import.meta.env.VITE_CF_ACCESS_Client_ID,
+        'CF-Access-Client-Secret': import.meta.env.VITE_CF_Access_Client_Secret
     }
 });
 
